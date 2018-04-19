@@ -1,0 +1,93 @@
+<view class="container">
+    <view class="repair-form">
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>客户联系人</text>
+            </view>
+            <view class="input">
+                <picker bindchange="handleContact" range-key="name" range="{{contacts}}" class="{{contact !== '' ? 'select' : 'noSelect'}}">
+                    {{contactName}}
+                </picker>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>实施地点</text>
+            </view>
+            <view class="input" bindtap="getGPS">
+                <input value="{{address}}" type="text" placeholder="点击选择位置" disabled></input>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>关键字</text>
+            </view>
+            <view class="input">
+                <input bindinput="handleKeywords" value="{{keywords}}" type="text" placeholder="请输入问题关键字"></input>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>问题描述</text>
+            </view>
+            <view class="input">
+                <textarea class="textarea" value="{{desc}}" maxlength="200" bindinput="handleDesc" type="text" placeholder="请输入问题描述"></textarea>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>处理方法</text>
+            </view>
+            <view class="input">
+                <textarea class="textarea" value="{{solution}}" maxlength="500" bindinput="handleSolution" type="text" placeholder="请输入处理方法"></textarea>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>处理结果</text>
+            </view>
+            <view class="input">
+                <picker bindchange="handleResult" range-key="name" range="{{resultList}}" class="{{result !== '' ? 'select' : 'noSelect'}}">
+                    {{resultName}}
+                </picker>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text>图片</text>
+            </view>
+            <view class="input imgBox" bindtap="chooseImg">
+                <text wx:if="{{!imgArr.length}}">请选择图片,最多三张</text>
+                <view class="imgItem" wx:for="{{imgArr}}" wx:key="item">
+                    <image src="{{item}}" mode="widthFix"></image>
+                </view>
+            </view>
+        </view>
+        <!--<view class="row">
+            <view class="label">
+                <text>派工单</text>
+            </view>
+            <view class="input imgBox" bindtap="chooseImg2">
+                <text wx:if="{{isHasFile}}">已上传，不可修改</text>
+                <text wx:elif="{{!imgArr2.length}}">请选择图片</text>
+                <view class="imgItem" wx:for="{{imgArr2}}" wx:key="item">
+                    <image src="{{item}}" mode="widthFix"></image>
+                </view>
+            </view>
+        </view>-->
+        <view class="row">
+            <view class="submit-con">
+                <button type="primary" bindtap="onSubmit">提交</button>
+            </view>
+            <view class="submit-con">
+                <button type="default" bindtap="onCancel">取消</button>
+            </view>
+        </view>
+    </view>
+</view>

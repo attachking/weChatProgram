@@ -1,0 +1,67 @@
+<view class="container">
+    <view class="repair-form">
+        <view class="row">
+            <view class="label">
+                <text>授权期限(天)</text>
+            </view>
+            <view class="input">
+                <input type="text" bindinput="handleValidDay" placeholder="默认无期限"></input>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>机器码</text>
+            </view>
+            <view class="input">
+                <input type="text" value="{{machine}}" placeholder="点击扫描设备屏幕上的二维码" disabled bindtap="handleScanCode"></input>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>设备类型</text>
+            </view>
+            <view class="input">
+                <picker bindchange="handleType" range-key="name" range="{{range1}}" class="{{deviceType !== '' ? 'select' : 'noSelect'}}">
+                    {{deviceTypeName}}
+                </picker>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>设备ID</text>
+            </view>
+            <view class="input">
+                <input type="text" value="{{deviceCode}}" placeholder="点击扫描设备屏幕上的二维码" disabled bindtap="handleScanCode"></input>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>设备编码</text>
+            </view>
+            <view class="input">
+                <input type="text" value="{{xfCode}}" disabled></input>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>摆放位置</text>
+            </view>
+            <view class="input" bindtap="getGPS">
+                <input value="{{address}}" type="text" placeholder="点击选择位置" disabled></input>
+            </view>
+        </view>
+        <view class="row">
+            <view class="submit-con">
+                <button type="primary" bindtap="onSubmit">设备授权</button>
+            </view>
+            <view class="submit-con">
+                <button type="default" bindtap="onCancel">取消</button>
+            </view>
+        </view>
+    </view>
+</view>

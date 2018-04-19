@@ -1,0 +1,9 @@
+<!--components/select-project/select-project.wxml-->
+<xf-mask wx:if="{{show}}" bindtap="closeMask">
+    <view class="container" catchtap="handleCatch">
+        <picker class="picker" mode="selector" range="{{selections}}" value="{{currentVal}}" range-key="projectName" bindchange="selectChange">
+            <text>{{selections[currentVal].projectName}}</text>
+            <image mode="widthFix" src="../../images/edit.png"></image>
+        </picker>
+    </view>
+</xf-mask>

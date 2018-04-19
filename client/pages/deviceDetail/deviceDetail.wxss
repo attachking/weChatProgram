@@ -1,0 +1,110 @@
+.top{
+    padding: 30rpx 30rpx;
+    display: flex;
+    align-items: center;
+    background: #409eff;
+    color: #fff;
+}
+.top .left{
+    width: 190rpx;
+    height: 190rpx;
+    border-radius: 10rpx;
+    background: #fff;
+    position: relative;
+}
+.top .left .errmsg{
+    width: 190rpx;
+    position: absolute;
+    bottom: 0rpx;
+    left: 0rpx;
+    border-bottom-left-radius: 10rpx;
+    border-bottom-right-radius: 10rpx;
+    background: rgba(255,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+    height: 50rpx;
+}
+.top .left .errmsg.success{
+    background: rgba(9,187,7,0.4);
+}
+.top .left .errmsg .icon{
+    margin-right: 5rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+}
+.top .left image{
+    width: 100%;
+}
+.top .info{
+    padding: 0 0 0 20rpx;
+    max-width: 450rpx;
+    box-sizing: border-box;
+}
+.top .info .first{
+    padding-bottom: 10rpx;
+    font-size: 40rpx;
+}
+.top .info .info-item{
+    font-size: 28rpx;
+}
+.btn-group{
+    display: flex;
+    padding: 20rpx 20rpx;
+    font-size: 28rpx;
+    border-bottom: 1rpx solid #f3f3f3;
+}
+.btn-group .row{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-group .row image{
+    margin-left: 10rpx;
+    width: 25rpx;
+}
+.table{
+    margin: 20rpx 20rpx 150rpx 20rpx;
+    border: 1rpx solid #d9d9d9;
+}
+.table .row{
+    display: flex;
+    justify-content: space-between;
+}
+.table .row:not(:last-child){
+    border-bottom: 1rpx solid #d9d9d9;
+}
+.table .row:nth-child(2n-1){
+    background: #f7f7f7;
+}
+.table .row .col{
+    padding: 10rpx 0;
+    font-size: 28rpx;
+    width: 50%;
+    text-align: center;
+}
+.table .row .col:first-child{
+    border-right: 1rpx solid #d9d9d9;
+}
+.add{
+    position: fixed;
+    padding: 15rpx 15rpx;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+.add button{
+    margin: 0 10rpx;
+    flex: 1;
+}

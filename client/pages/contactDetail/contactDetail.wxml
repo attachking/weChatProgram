@@ -1,0 +1,34 @@
+<view class="container">
+    <view class="item">
+        <view class="icon">
+            <image src="../../images/contact.png" mode="widthFix"></image>
+        </view>
+        <view class="content">
+            <text>{{contact || '--'}}</text>
+        </view>
+    </view>
+    <view class="item">
+        <view class="icon">
+            <image src="../../images/department.png" mode="widthFix"></image>
+        </view>
+        <view class="content">
+            <text>{{department || '--'}}</text>
+        </view>
+    </view>
+    <view class="item">
+        <view class="icon">
+            <image src="../../images/duty.png" mode="widthFix"></image>
+        </view>
+        <view class="content">
+            <text>{{duty || '--'}}</text>
+        </view>
+    </view>
+    <view class="item" bindtap="handleTel">
+        <view class="icon">
+            <image src="../../images/tel.png" mode="widthFix"></image>
+        </view>
+        <view class="content">
+            <text>{{tel || '--'}}</text>
+        </view>
+    </view>
+</view>

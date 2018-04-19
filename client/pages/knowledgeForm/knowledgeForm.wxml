@@ -1,0 +1,70 @@
+<view class="container">
+    <view class="repair-form">
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>标题</text>
+            </view>
+            <view class="input">
+                <input value="{{issueTitle}}" bindinput="handleIssueTitle" type="text" placeholder="请输入标题"></input>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>关键字</text>
+            </view>
+            <view class="input">
+                <input value="{{keywords}}" bindinput="handleKeywords" type="text" placeholder="请输入关键字"></input>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>问题类别</text>
+            </view>
+            <view class="input">
+                <picker bindchange="handleIssue" range-key="name" range="{{issues}}" class="{{issue !== '' ? 'select' : 'noSelect'}}">
+                    {{issueName}}
+                </picker>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>问题描述</text>
+            </view>
+            <view class="input">
+                <textarea class="textarea" value="{{desc}}" maxlength="200" bindinput="handleDesc" type="text" placeholder="请输入问题描述"></textarea>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text class="required">*</text>
+                <text>解决方法</text>
+            </view>
+            <view class="input">
+                <textarea class="textarea" value="{{solution}}" maxlength="2000" bindinput="handleSolution" type="text" placeholder="请输入处理方法"></textarea>
+            </view>
+        </view>
+        <view class="row">
+            <view class="label">
+                <text>附件</text>
+            </view>
+            <view class="input imgBox" bindtap="chooseImg">
+                <text wx:if="{{!imgArr.length}}">请选择附件,最多三张</text>
+                <view class="imgItem" wx:for="{{imgArr}}" wx:key="item">
+                    <image src="{{item}}" mode="widthFix"></image>
+                </view>
+            </view>
+        </view>
+        <view class="row">
+            <view class="submit-con">
+                <button type="primary" bindtap="onSubmit">提交</button>
+            </view>
+            <view class="submit-con">
+                <button type="default" bindtap="onCancel">取消</button>
+            </view>
+        </view>
+    </view>
+</view>

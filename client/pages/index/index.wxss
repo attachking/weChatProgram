@@ -1,0 +1,34 @@
+.container{
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.container .bkg{
+    width: 100%;
+}
+.login-form{
+    position: absolute;
+    top: 40%;
+    left: 0;
+}
+.login-form .row{
+    display: flex;
+    margin: 0 100rpx;
+    padding: 20rpx 0;
+    border-bottom: 2rpx solid #fff;
+}
+.login-form .row .label{
+    width: 50rpx;
+}
+.login-form .row input{
+    color: #fff;
+    padding: 0 20rpx;
+}
+.login-form .row .icon{
+    width: 46rpx;
+    height: 46rpx;
+}
+.login{
+    width: 80%;
+    margin-top: 50rpx;
+}

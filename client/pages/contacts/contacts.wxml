@@ -1,0 +1,18 @@
+<view style="height: 100%;">
+    <scroll-view class="scroll-view" scroll-y bindscroll="handleScroll" scroll-into-view="{{scrollInto}}">
+        <view wx:for="{{list}}" wx:key="{{item.title}}">
+            <view class="title" id="{{item.title}}">
+                <text>{{item.title}}</text>
+            </view>
+            <view wx:for="{{item.items}}"  wx:for-index="idx" wx:for-item="val" wx:key="{{val.id}}" data-uid="{{val.id}}" class="item" bindtap="handleTap">
+                <text>{{val.name}}</text>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="navigation" bindtouchend="handleTouchEnd" bindtouchstart="handleTouchStart" bindtouchmove="handleTouchMove">
+        <view class="item {{item.title === currentTitle ? 'current' : ''}}" wx:for="{{list}}" wx:key="{{item.title}}" data-current="{{item.title}}">{{item.title}}</view>
+    </view>
+    <view class="fixed-title" style="transform: translate(0, {{currentPosition}}rpx);">
+        <text>{{currentTitle}}</text>
+    </view>
+</view>

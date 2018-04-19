@@ -1,0 +1,51 @@
+<view class="container">
+    <view class="top">
+        <view class="left">
+            <image src="../../images/device-common.png" mode="widthFix"></image>
+            <view class="errmsg {{status === 3 ? 'success' : ''}}">
+                <view class="icon">
+                    <icon type="{{status === 1 ? 'info' : status === 2 ? 'warn' : 'success'}}" size="20"></icon>
+                </view>
+                <text>{{status === 1 ? '未开机' : status === 2 ? '设备异常' : '设备正常'}}</text>
+            </view>
+        </view>
+        <view class="info">
+            <view class="first">{{type}}</view>
+            <view class="info-item">授权时间：{{time}}</view>
+            <view class="info-item">摆放位置：{{position}}</view>
+            <view class="info-item">设备编号：{{code}}</view>
+            <view class="info-item">机器码：{{machine}}</view>
+        </view>
+    </view>
+    <view class="btn-group">
+        <view class="row" bindtap="handleCycleChange">
+            <text>{{cycle}}</text><image src="../../images/arrow.png" mode="widthFix"></image>
+        </view>
+        <view class="row" bindtap="handleTypeChange">
+            <text>{{recordType}}</text><image src="../../images/arrow.png" mode="widthFix"></image>
+        </view>
+    </view>
+    <view class="table">
+        <view class="row">
+            <view class="col">
+                <text>监控时间</text>
+            </view>
+            <view class="col">
+                <text>{{recordTypeCode === 'second' ? '运行状态' : '开机状态'}}</text>
+            </view>
+        </view>
+        <view class="row" wx:for="{{list}}" wx:key="{{index}}">
+            <view class="col">
+                <text>{{item.time}}</text>
+            </view>
+            <view class="col">
+                <text class="{{recordTypeCode === 'second' ? (item.deviceLastRunStatus === 0 ? 'red' : 'green') : (item.openCounts === 0 ? 'red' : 'green')}}">{{recordTypeCode === 'second' ? (item.deviceLastRunStatus === 0 ? '运行异常' : '运行正常') : (item.openCounts === 0 ? '未开机' : '已开机')}}</text>
+            </view>
+        </view>
+        <include src="../empty/empty.wxml" wx:if="{{!loading && !list.length}}" />
+    </view>
+    <view class="add">
+        <button type="primary" bindtap="handleAdd">添加维修记录</button>
+        <button type="primary" bindtap="handleRecord">历史维修记录</button>
+    </view>
+</view>

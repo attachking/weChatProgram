@@ -1,0 +1,85 @@
+<view class="container">
+    <view class="list">
+        <view class="item">
+            <view class="icon">
+                <image src="../../images/contact.png" mode="widthFix"></image>
+            </view>
+            <view class="content">
+                {{detail.addressBooksContacts || '--'}}
+            </view>
+        </view>
+        <view class="item" bindtap="handlePhone" data-tel="{{detail.addressBooksContactsPhone}}">
+            <view class="icon">
+                <image src="../../images/tel.png" mode="widthFix"></image>
+            </view>
+            <view class="content">
+                {{detail.addressBooksContactsPhone || '--'}}
+            </view>
+        </view>
+        <view class="item" bindtap="handlePosition" data-name="{{detail.repairProcessePlace}}" data-lat="{{detail.repairProcesseLat}}" data-lng="{{detail.repairProcesseLng}}">
+            <view class="icon">
+                <image src="../../images/position.png" mode="widthFix"></image>
+            </view>
+            <view class="content">
+                {{detail.repairProcessePlace || '--'}}
+            </view>
+        </view>
+        <view class="item">
+            <view class="icon">
+                <image src="../../images/device.png" mode="widthFix"></image>
+            </view>
+            <view class="content">
+                {{detail.parameterOption || '--'}}
+            </view>
+        </view>
+    </view>
+    <view class="card">
+        <view class="title">
+            <view class="ver"></view>
+            <view>问题描述</view>
+        </view>
+        <view class="con">
+            {{detail.repairProblemDesc || '--'}}
+        </view>
+    </view>
+    <view class="card">
+        <view class="title">
+            <view class="ver"></view>
+            <view>处理方法</view>
+        </view>
+        <view class="con">
+            {{detail.repairProcesseMethod || '--'}}
+        </view>
+    </view>
+    <view class="card">
+        <view class="title">
+            <view class="ver"></view>
+            <view>处理结果</view>
+        </view>
+        <view class="con">
+            <text class="{{detail.repairProcesseResults === 1 ? 'green' : 'red'}}">{{detail.repairProcesseResults === 1 ? '已解决' : '未解决'}}</text>
+        </view>
+    </view>
+    <view class="card">
+        <view class="title">
+            <view class="ver"></view>
+            <view>图片</view>
+        </view>
+        <view class="con imgBox">
+            <view class="imgItem" wx:for="{{imgArr}}" wx:key="{{index}}" data-idx="{{index}}" bindtap="handleImg">
+                <image mode="widthFix" src="{{item}}"></image>
+            </view>
+        </view>
+    </view>
+    <view class="card">
+        <view class="title">
+            <view class="ver"></view>
+            <view>派工单</view>
+        </view>
+        <view class="con imgBox">
+            <view class="imgItem" bindtap="handleImg2" data-url="{{detail.isHasFile}}" wx:if="{{!!detail.isHasFile}}">
+                <image mode="widthFix" src="{{detail.isHasFile}}"></image>
+            </view>
+        </view>
+    </view>
+</view>

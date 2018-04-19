@@ -1,0 +1,22 @@
+/* components/select-project/select-project.wxss */
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 400rpx;
+    padding: 30rpx 40rpx;
+    font-size: 28rpx;
+}
+.picker{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.picker text{
+    vertical-align: middle;
+}
+.picker image{
+    width: 50rpx;
+    margin-left: 20rpx;
+    vertical-align: middle;
+}

@@ -1,0 +1,37 @@
+<view class="container">
+    <view class="list">
+        <view class="item"
+              bindtap="handleTap"
+              wx:for="{{list}}"
+              wx:key="{{item.deviceId}}"
+              data-id="{{item.deviceId}}"
+              data-type="{{item.parameterOption}}"
+              data-time="{{item.deviceInstallTime}}"
+              data-code="{{item.deviceCode}}"
+              data-machine="{{item.deviceMachineCode}}"
+              data-position="{{item.devicePosition}}"
+              data-status="{{item.status}}">
+            <view class="img">
+                <image src="../../images/device-common.png" mode="widthFix"></image>
+            </view>
+            <view class="info">
+                <view class="info-item">
+                    <text>摆放位置：{{item.devicePosition || '--'}}</text>
+                </view>
+                <view class="info-item">
+                    <text>设备编号：{{item.deviceCode || '--'}}</text>
+                </view>
+                <view class="info-item">
+                    <text>机器码：{{item.deviceMachineCode || '--'}}</text>
+                </view>
+                <view class="info-item">
+                    <text>运行状态：<text class="{{item.status === 1 ? 'blue' : item.status === 2 ? 'red' : 'green'}}">{{item.statusStr}}</text></text>
+                </view>
+            </view>
+            <view class="icon">
+                <icon type="{{item.status === 1 ? 'info' : item.status === 2 ? 'warn' : 'success'}}" size="30"></icon>
+            </view>
+        </view>
+    </view>
+    <include src="../empty/empty.wxml" wx:if="{{!loading && !list.length}}" />
+</view>

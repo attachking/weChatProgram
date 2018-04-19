@@ -1,0 +1,7 @@
+{
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "select-project": "../../components/select-project/select-project"
+  }
+}

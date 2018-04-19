@@ -1,0 +1,42 @@
+<!--logs.wxml-->
+<view class="container">
+  <view class="user-info">
+    <view class="left">
+      <image src="{{avatarUrl}}" mode="widthFix"></image>
+    </view>
+    <view class="right">
+      <view class="name">
+        <text>{{username}}</text>
+      </view>
+      <view class="desc">
+        <text>项目实施工程师</text>
+      </view>
+      <view class="desc">
+        <text>当前项目：{{currentProject.projectName}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="blank"></view>
+  <view class="list">
+    <view class="item" data-path="../contacts/contacts" bindtap="bindViewTap">
+      <image mode="widthFix" src="../../images/contact.png"></image>
+      <text>客户通讯录</text>
+    </view>
+    <view class="item" bindtap="bindChangeProject">
+      <image mode="widthFix" src="../../images/duty.png"></image>
+      <text>项目切换</text>
+    </view>
+    <view class="item" data-path="../repairList-self/repairList-self" bindtap="bindViewTap">
+      <image mode="widthFix" src="../../images/record.png"></image>
+      <text>我的维修记录</text>
+    </view>
+    <view class="item" data-path="../password/password" bindtap="bindViewTap">
+      <image mode="widthFix" src="../../images/setting.png"></image>
+      <text>修改密码</text>
+    </view>
+  </view>
+  <view class="logout">
+    <button type="warn" bindtap="logout">退出登录</button>
+  </view>
+  <select-project show="{{showSelect}}" bindclosemask="handleCloseMask"></select-project>
+</view>

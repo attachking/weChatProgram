@@ -1,0 +1,53 @@
+<view class="container">
+    <view class="list">
+        <view class="item">
+            <view class="icon">
+                <image src="../../images/setting.png" mode="widthFix"></image>
+            </view>
+            <view class="content">
+                {{detail.knowledgeKeyword}}
+            </view>
+        </view>
+        <view class="item">
+            <view class="icon">
+                <image src="../../images/device.png" mode="widthFix"></image>
+            </view>
+            <view class="content">
+                {{detail.parameterOption}}
+            </view>
+        </view>
+    </view>
+    <view class="card">
+        <view class="title">
+            <view class="ver"></view>
+            <view>问题描述</view>
+        </view>
+        <view class="con white">{{detail.knowledgeDesc}}</view>
+    </view>
+    <view class="card">
+        <view class="title">
+            <view class="ver"></view>
+            <view>处理方法</view>
+        </view>
+        <view class="con white">{{detail.knowledgeMethod}}</view>
+    </view>
+    <view class="card">
+        <view class="title">
+            <view class="ver"></view>
+            <view>附件</view>
+        </view>
+        <view class="con imgBox">
+            <view class="imgItem" wx:for="{{files}}" wx:key="{{index}}">
+                <block wx:if="{{item.type === 0}}">
+                    <image mode="widthFix" src="{{item.url}}" data-idx="{{index}}" bindtap="handleImg"></image>
+                </block>
+                <block wx:else>
+                    <view class="fileBox" data-url="{{item.url}}" bindtap="handleFile">
+                        <image src="../../images/file.png" mode="widthFix"></image>
+                        <text>附件</text>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+</view>

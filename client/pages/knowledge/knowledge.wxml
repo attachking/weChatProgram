@@ -1,0 +1,27 @@
+<view class="container">
+    <view class="search">
+        <view class="picker">
+            <picker range="{{selections}}" range-key="name" bindchange="handleChange">
+                <text>{{selectedName}}</text>
+                <image mode="widthFix" src="../../images/arrow.png"></image>
+            </picker>
+        </view>
+        <view class="input">
+            <icon type="search" color="#999" size="20"></icon>
+            <input type="text" bindinput="handleInput" placeholder="请输入关键字进行查询" confirm-type="search" bindconfirm="handleConfirm"></input>
+        </view>
+    </view>
+    <view class="list">
+        <view class="item" bindtap="handleDetail" data-id="{{item.knowledgeId}}" wx:for="{{list}}" wx:key="{{item.knowledgeId}}">
+            <view class="tit">
+                <text class="head">{{item.knowledgeHead || '--'}}</text>
+                <text class="ding" wx:if="{{item.knowledgeTop === 1}}">顶</text>
+            </view>
+            <view class="right">
+                <image mode="widthFix" src="../../images/eye.png"></image>
+                <text>{{item.knowledgeClicks || 0}}</text>
+            </view>
+        </view>
+    </view>
+    <include src="../empty/empty.wxml" wx:if="{{!loading && !list.length}}" />
+</view>

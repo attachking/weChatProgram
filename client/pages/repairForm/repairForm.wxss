@@ -1,0 +1,60 @@
+.container{
+    padding: 20rpx 10rpx;
+}
+.repair-form{
+    font-size: 28rpx;
+}
+.repair-form .row{
+    padding: 10rpx;
+    display: flex;
+    align-items: center;
+    min-height: 100rpx;
+}
+.repair-form .row:not(:last-child){
+    border-bottom: 1rpx solid #d9d9d9;
+}
+.repair-form .row .label{
+    width: 180rpx;
+    text-align: right;
+    margin-right: 18rpx;
+}
+.repair-form .row .input{
+    flex-grow: 1;
+}
+.repair-form .row input{
+    padding: 5rpx 10rpx;
+}
+.repair-form .row .required {
+    color: red;
+    padding-right: 8rpx;
+}
+.repair-form .row .select {
+    color: #333;
+}
+.repair-form .row .noSelect {
+    color: #666;
+}
+.repair-form .row picker{
+    padding-left:16rpx;
+}
+.textarea{
+    height: 200rpx;
+    width: auto;
+}
+.imgBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #666;
+}
+.imgBox .imgItem{
+    flex: 1;
+    padding: 0 20rpx;
+}
+.imgBox image{
+    width: 100%;
+}
+.submit-con{
+    flex: 1;
+    padding: 20rpx 10rpx;
+}

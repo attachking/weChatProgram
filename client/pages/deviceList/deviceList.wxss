@@ -1,0 +1,33 @@
+.item{
+    display: flex;
+    align-items: center;
+    padding: 20rpx 10rpx;
+}
+.item:not(:last-child){
+    border-bottom: 1rpx dashed #d9d9d9;
+}
+.item .img{
+    width: 180rpx;
+    border-radius: 10rpx;
+    background: #fff;
+    box-shadow: 0 0 10rpx #888888;
+}
+.item .img image{
+    width: 100%;
+}
+.item .info{
+    font-size: 28rpx;
+    padding: 0 20rpx;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.item .info .info-item{
+    width: 450rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item .info .info-item:not(:last-child){
+    padding-bottom: 10rpx;
+}

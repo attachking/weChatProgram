@@ -1,0 +1,36 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="total">
+        <view class="top-item"><text>共 <text class="blue">{{total}}</text> 台设备</text>
+        </view>
+        <view class="top-item"><text>正常 <text class="blue">{{normal}}</text> 台</text>
+        </view>
+        <view class="top-item"><text>非正常 <text class="red">{{abnormal}}</text> 台</text>
+        </view>
+    </view>
+    <view class="list">
+        <view class="item" bindtap="handleTap" wx:for="{{list}}" wx:key="{{index}}" data-id="{{item.deviceType}}" data-title="{{item.parameterOption}}">
+            <view class="content">
+                <view class="title">
+                    <image src="../../images/text-border.png"></image>
+                    <view class="text">{{item.parameterOption}}</view>
+                </view>
+                <canvas class="canvas" style="width: 200rpx; height: 200rpx;" canvas-id="xf{{index}}"></canvas>
+                <view class="footer">
+                    <view class="msg">
+                        <view class="blue">运行正常</view>
+                        <view>
+                            <text class="blue">{{item.deviceRunCount}}</text> 台
+                        </view>
+                    </view>
+                    <view class="msg">
+                        <view class="red">运行非正常</view>
+                        <view>
+                            <text class="red">{{item.deviceNotRunCount}}</text> 台
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

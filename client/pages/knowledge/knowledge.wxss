@@ -1,0 +1,75 @@
+.container{
+    font-size: 28rpx;
+}
+.search{
+    padding: 10rpx 30rpx 20rpx 30rpx;
+    display: flex;
+    border-bottom: 1rpx solid #f3f3f3;
+}
+.search .picker{
+    display: flex;
+    align-items: center;
+}
+.search .picker image{
+    margin: 0 20rpx;
+    width: 20rpx;
+}
+.search .input{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 20rpx;
+    padding: 10rpx 20rpx;
+    border-radius: 30rpx;
+    border: 1rpx solid #d9d9d9;
+}
+.search .input icon{
+    margin: 0 10rpx;
+}
+.item{
+    padding: 30rpx 20rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.item:nth-child(2n-1){
+    background: #fcfcfc;
+}
+.item:nth-child(2n){
+    background: #f4f4f4;
+}
+.item:not(:last-child){
+    border-bottom: 1rpx dashed #d9d9d9;
+}
+.item .tit{
+    width: 70%;
+    display: flex;
+    font-size: 32rpx;
+}
+.item .tit .head{
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item .tit .ding{
+    display: inline-block;
+    text-align: center;
+    line-height: 35rpx;
+    height: 35rpx;
+    width: 35rpx;
+    border-radius: 5rpx;
+    border: 1rpx solid red;
+    color: red;
+    margin-left: 10rpx;
+    font-size: 28rpx;
+}
+.item .right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.item .right image{
+    width: 30rpx;
+    margin-right: 10rpx;
+}

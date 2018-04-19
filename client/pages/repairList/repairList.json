@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "维修记录",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true,
+  "usingComponents": {}
+}

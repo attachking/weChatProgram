@@ -1,0 +1,33 @@
+<view class="container">
+    <view class="repairList">
+        <view class="item" bindtap="handleTap" wx:for="{{list}}" wx:key="index" data-uid="{{item.repairRecordCreator}}" data-upload="{{item.isUpload}}" data-recordid="{{item.repairRecordId}}" data-devicecode="{{item.deviceId}}" data-editable="{{item.editable}}">
+            <view class="left">
+                <image src="../../images/background2.png" mode="widthFix"></image>
+                <view class="left-text">
+                    <view>{{item.repairProcesseName}}</view>
+                    <view>{{item.year}}</view>
+                    <view>{{item.month}}</view>
+                </view>
+            </view>
+            <view class="info">
+                <view class="info-item">
+                    <text>设别类型：{{item.parameterOption}}</text>
+                </view>
+                <view class="info-item">
+                    <text>摆放位置：{{item.devicePosition}}</text>
+                </view>
+                <view class="info-item">
+                    <text>设备编号：{{item.deviceCode}}</text>
+                </view>
+                <view class="info-item">
+                    <text>机器码：{{item.deviceMachineCode}}</text>
+                </view>
+                <view class="info-item">
+                    <text>处理结果：<text class="{{item.resultCode ? 'green' : 'red'}}">{{item.result}}</text></text>
+                    <text class="{{item.isUpload ? 'green' : 'red'}}">{{item.isUploadStr}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <include src="../empty/empty.wxml" wx:if="{{!loading && !list.length}}" />
+</view>

@@ -1,0 +1,18 @@
+@import '../repairDetail/repairDetail.wxss';
+.imgItem{
+    display: flex;
+    justify-content: center;
+}
+.fileBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.fileBox image{
+    width: 80rpx;
+}
+.white{
+    white-space: pre-wrap;
+    line-height: 50rpx;
+}

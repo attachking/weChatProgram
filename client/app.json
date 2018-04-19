@@ -1,0 +1,71 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/user",
+    "pages/qrcode/qrcode",
+    "pages/knowledge/knowledge",
+    "pages/contacts/contacts",
+    "pages/password/password",
+    "pages/deviceList/deviceList",
+    "pages/repairList/repairList",
+    "pages/deviceDetail/deviceDetail",
+    "pages/repairForm/repairForm",
+    "pages/monitor/monitor",
+    "pages/repairDetail/repairDetail",
+    "pages/contactDetail/contactDetail",
+    "pages/repairList-self/repairList-self",
+    "pages/knowledgeDetail/knowledgeDetail",
+    "pages/empty/empty",
+    "pages/binding/binding",
+    "pages/knowledgeForm/knowledgeForm"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "讯丰维保通",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "color": "#333333",
+        "selectedColor": "#09bb07",
+        "pagePath": "pages/monitor/monitor",
+        "text": "运行监控",
+        "iconPath": "images/monitor.png",
+        "selectedIconPath": "images/monitor-ed.png"
+      },
+      {
+        "color": "#333333",
+        "selectedColor": "#09bb07",
+        "pagePath": "pages/repairList/repairList",
+        "text": "维修记录",
+        "iconPath": "images/recordList.png",
+        "selectedIconPath": "images/recordList-ed.png"
+      },
+      {
+        "pagePath": "pages/qrcode/qrcode",
+        "text": "扫描二维码",
+        "iconPath": "images/qrcode.png",
+        "selectedIconPath": "images/qrcode.png"
+      },
+      {
+        "color": "#333333",
+        "selectedColor": "#09bb07",
+        "pagePath": "pages/knowledge/knowledge",
+        "text": "知识库",
+        "iconPath": "images/knowledge.png",
+        "selectedIconPath": "images/knowledge-ed.png"
+      },
+      {
+        "color": "#333333",
+        "selectedColor": "#09bb07",
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/me.png",
+        "selectedIconPath": "images/me-ed.png"
+      }
+    ]
+  }
+}
