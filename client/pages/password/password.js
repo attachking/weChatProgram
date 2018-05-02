@@ -7,9 +7,9 @@ Page({
     newPassword2: ''
   },
   bindSubmit() {
-    if (!/^[a-zA-Z0-9]{1,15}$/.test(this.data.newPassword)) {
+    if (!/^[a-zA-Z0-9_]{1,25}$/.test(this.data.newPassword)) {
       wx.showToast({
-        title: '密码规则为数字或字母，长度6-15位',
+        title: '密码规则为数字、字母或下划线，长度6-25位',
         icon: 'none'
       })
       return

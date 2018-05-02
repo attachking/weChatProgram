@@ -12,5 +12,7 @@
 	},
 	"appid": "wx62d51bd6596f4e74",
 	"projectname": "testNode",
+	"libVersion": "1.9.94",
+	"compileType": "miniprogram",
 	"condition": {}
 }

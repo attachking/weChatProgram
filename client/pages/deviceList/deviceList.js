@@ -79,7 +79,7 @@ Page({
   },
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
-    searchData.deviceType = options.id
+    searchData.deviceType = options.id || ''
     searchData.projectId = app.globalData.currentProject.projectId
     wx.setNavigationBarTitle({
       title: options.title || ''

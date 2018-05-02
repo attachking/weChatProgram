@@ -166,8 +166,6 @@ Page({
         title: '我的维修记录'
       })
     }
-    searchData.currentPage = 1
-    this.getList()
   },
   // 生命周期函数--监听页面初次渲染完成
   onReady: function () {
@@ -175,7 +173,8 @@ Page({
   },
   // 生命周期函数--监听页面显示
   onShow: function () {
-
+    searchData.currentPage = 1
+    this.getList()
   },
   // 生命周期函数--监听页面隐藏
   onHide: function () {
