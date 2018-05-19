@@ -44,7 +44,7 @@ Page({
 	getDetail(iccKnowledgeId) {
     post('/service/business/college/iccKnowledge/iccKnowledge/editKnowledgeInfo.xf', {iccKnowledgeId}).then(res => {
       let files = res.data.result.iccDeviceFileList.map(item => {
-        let type = /\.(png|jpe?g|gif|svg)(\?.*)?$/.test(item.deviceFileName) ? 0 : 1
+        let type = /\.(png|jpe?g|gif|svg)(\?.*)?$/.test(item.deviceFileUrl) ? 0 : 1
         return {
           type,
           url: item.deviceFileUrl,

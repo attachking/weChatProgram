@@ -52,7 +52,7 @@
                 <text>摆放位置</text>
             </view>
             <view class="input" bindtap="getGPS">
-                <input value="{{address}}" type="text" placeholder="点击选择位置" disabled></input>
+                <input value="{{address}}" type="text" placeholder="点击选择位置" disabled="{{isDisabled}}" focus="{{isFocus}}" bindblur="handleBlur" bindinput="handleAddress"></input>
             </view>
         </view>
         <view class="row">

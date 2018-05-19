@@ -31,6 +31,7 @@ Page({
       })
       pageBean = res.data.pageBean
       res.data.result.forEach(item => {
+        item.repairRecordCreatetime = typeof item.repairRecordCreatetime === 'string' ? item.repairRecordCreatetime.replace(/-/g, '/') : item.repairRecordCreatetime
         item.year = dateFormat.call(new Date(item.repairRecordCreatetime), 'yyyy')
         item.month = dateFormat.call(new Date(item.repairRecordCreatetime), 'MM-dd')
         item.result = item.repairProcesseResults === 1 ? '已处理' : '待处理'
@@ -137,6 +138,9 @@ Page({
   },
   onPullDownRefresh() {
     searchData.currentPage = 1
+    if (searchData.projectId) {
+      searchData.projectId = app.globalData.currentProject.projectId
+    }
     this.getList(() => {
       wx.stopPullDownRefresh()
       wx.showToast({
@@ -157,7 +161,7 @@ Page({
     if (options.deviceCode) {
       searchData.deviceCode = options.deviceCode
       wx.setNavigationBarTitle({
-        title: options.deviceCode
+        title: '维修记录'
       })
     } else {
       searchData.projectId = app.globalData.currentProject.projectId

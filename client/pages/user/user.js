@@ -26,7 +26,8 @@ Page({
             mask: true
           })
           post('/service/business/college/iccWechat/iccWechat/relieveBindWechat.xf', {
-            userId: wx.getStorageSync(STORAGE_TYPE.uid)
+            userId: wx.getStorageSync(STORAGE_TYPE.uid),
+            openid: wx.getStorageSync(STORAGE_TYPE.openid)
           }).then(res => {
             wx.hideLoading()
             if (res.data.error.result === 1) {

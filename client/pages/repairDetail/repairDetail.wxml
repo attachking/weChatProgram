@@ -57,7 +57,7 @@
             <view>处理结果</view>
         </view>
         <view class="con">
-            <text class="{{detail.repairProcesseResults === 1 ? 'green' : 'red'}}">{{detail.repairProcesseResults === 1 ? '已解决' : '未解决'}}</text>
+            <text class="{{detail.repairProcesseResults === 1 ? 'green' : 'red'}}">{{detail.repairProcesseResults === 1 ? '已解决' : '待处理'}}</text>
         </view>
     </view>
     <view class="card">

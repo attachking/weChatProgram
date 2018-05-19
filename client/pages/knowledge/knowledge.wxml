@@ -8,7 +8,7 @@
         </view>
         <view class="input">
             <icon type="search" color="#999" size="20"></icon>
-            <input type="text" bindinput="handleInput" placeholder="请输入关键字进行查询" confirm-type="search" bindconfirm="handleConfirm"></input>
+            <input type="text" bindinput="handleInput" value="{{showKeywords}}" placeholder="请输入关键字进行查询" confirm-type="search" bindconfirm="handleConfirm"></input>
         </view>
     </view>
     <view class="list">

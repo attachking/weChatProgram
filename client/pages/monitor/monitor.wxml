@@ -1,11 +1,11 @@
 <!--index.wxml-->
 <view class="container">
     <view class="total">
-        <view class="top-item"><text>共 <text class="blue">{{total}}</text> 台设备</text>
+        <view class="top-item" bindtap="handleTap" data-id="" data-title=""><text>共 <text class="blue">{{total}}</text> 台设备</text>
         </view>
         <view class="top-item"><text>正常 <text class="blue">{{normal}}</text> 台</text>
         </view>
-        <view class="top-item"><text>非正常 <text class="red">{{abnormal}}</text> 台</text>
+        <view class="top-item"><text>运行异常 <text class="red">{{abnormal}}</text> 台</text>
         </view>
     </view>
     <view class="list">
@@ -24,7 +24,7 @@
                         </view>
                     </view>
                     <view class="msg">
-                        <view class="red">运行非正常</view>
+                        <view class="red">运行异常</view>
                         <view>
                             <text class="red">{{item.deviceNotRunCount}}</text> 台
                         </view>
@@ -33,4 +33,5 @@
             </view>
         </view>
     </view>
+    <select-project show="{{showSelect}}" bindclosemask="handleCloseMask"></select-project>
 </view>

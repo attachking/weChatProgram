@@ -1,10 +1,25 @@
-export const BASE_URL = 'https://661973658.chenjiyuan.club' // https://661973658.chenjiyuan.club
+/*
+* 微信公众服务号
+*   账号：zhihuijob@yeah.net
+*   密码：xfxxgs2018
+* 163旗下yeah邮箱
+*   邮箱：zhihuijob@yeah.net
+*   密码：xfxxgs2018
+* 小程序
+*   账号：591584393@qq.com
+*   密码：xfxxgs2018
+*   appid：wx11d76271da4c4709
+*   密钥：d03e56553bf3f5d38e2619d88536b2cd
+* */
+
+export const BASE_URL = 'https://yw.zhihuijob.com' // https://661973658.chenjiyuan.club  https://yw.zhihuijob.com
 export const STORAGE_TYPE = {
   account: '__account__',
   name: '__name__',
   uid: '__uid__',
   project: '__project__',
-	currentTab: '__currentTab__'
+	currentTab: '__currentTab__',
+  openid: '__openid__'
 }
 
 // 时间格式化方法:dateFormat.call(Date, 'yyyy-MM-dd')
@@ -80,4 +95,26 @@ export function queryParse(str) {
     }
   })
   return o
+}
+
+export function getAuthen(scope) {
+  return new Promise((resolve, reject) => {
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting[scope]) {
+          wx.authorize({
+            scope: scope,
+            success() {
+              resolve()
+            },
+            fail() {
+              reject()
+            }
+          })
+        } else {
+          resolve()
+        }
+      }
+    })
+  })
 }

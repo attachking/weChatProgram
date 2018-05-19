@@ -1,4 +1,4 @@
-import {post, uploadFile, STORAGE_TYPE} from '../../utils/util'
+import {post, uploadFile, STORAGE_TYPE, getAuthen} from '../../utils/util'
 
 const app = getApp()
 let form = {
@@ -38,7 +38,9 @@ Page({
     longitude: '', // 经度
     imgArr: [],
     imgArr2: [], // 派工单
-    isHasFile: false
+    isHasFile: false,
+    isFocus: false,
+    isDisabled: true
   },
   handleContact(e) {
     this.setData({
@@ -47,28 +49,72 @@ Page({
     })
     form.repairCustomerContact = this.data.contacts[e.detail.value].code
   },
+  handleAddress(e) {
+    const value = e.detail.value
+    this.setData({
+      address: value
+    })
+    form.repairProcessePlace = value
+  },
+  handleBlur() {
+    this.setData({
+      isDisabled:true
+    })
+  },
   getGPS() {
     let _this = this
-    wx.chooseLocation({
-      success(e) {
-        _this.setData({
-          address: e.address,
-          latitude: e.latitude,
-          longitude: e.longitude
-        })
-        form.repairProcessePlace = e.address
-        form.repairProcesseLat = e.latitude
-        form.repairProcesseLng = e.longitude
-      },
-      fail(err) {
-        if (err.errMsg === 'chooseLocation:fail auth deny') {
-          wx.showModal({
-            title: '提示',
-            content: '此功能需用户授权',
-            showCancel: false
-          })
+    if (this.data.latitude) {
+      wx.showActionSheet({
+        itemList: ['编辑详细位置', '重新定位'],
+        success(index) {
+          if (index.tapIndex === 0) {
+            _this.setData({
+              isFocus:true,
+              isDisabled: false
+            })
+          } else if (index.tapIndex === 1) {
+            _this.choosePos()
+          }
         }
-      }
+      })
+    } else {
+      this.choosePos()
+    }
+  },
+  choosePos() {
+    let _this = this
+    getAuthen('scope.userLocation').then(() => {
+      wx.chooseLocation({
+        success(e) {
+          _this.setData({
+            address: e.address,
+            latitude: e.latitude,
+            longitude: e.longitude
+          })
+          form.repairProcessePlace = e.address
+          form.repairProcesseLat = e.latitude
+          form.repairProcesseLng = e.longitude
+        },
+        fail(err) {
+          if (err.errMsg === 'chooseLocation:fail auth deny') {
+            wx.showModal({
+              title: '提示',
+              content: '此功能需用户授权',
+              showCancel: false
+            })
+          }
+        }
+      })
+    }).catch(() => {
+      wx.showModal({
+        title: '提示',
+        content: '请允许使用我的地理位置',
+        success({confirm}) {
+          if (confirm) {
+            wx.openSetting()
+          }
+        }
+      })
     })
   },
   handleDesc(e) {
@@ -273,7 +319,9 @@ Page({
         solution: res.data.result.iccRepairRecord.repairProcesseMethod,
         resultName: !!res.data.result.iccRepairRecord.repairProcesseResults ? '已处理' : '待处理',
         address: res.data.result.iccRepairRecord.repairProcessePlace,
-        keywords: res.data.result.iccRepairRecord.repairRecordKeyword
+        keywords: res.data.result.iccRepairRecord.repairRecordKeyword,
+        latitude: res.data.result.iccRepairRecord.repairProcesseLat,
+        longitude: res.data.result.iccRepairRecord.repairProcesseLng
       })
       form.repairProblemDesc = res.data.result.iccRepairRecord.repairProblemDesc
       form.repairRecordKeyword = res.data.result.iccRepairRecord.repairRecordKeyword

@@ -29,6 +29,11 @@ App({
           codeCode: item.parameterCode
         }
       })
+      this.globalData.issues.unshift({
+        name: '全部',
+        code: '',
+        codeCode: ''
+      })
     })
   },
   globalData: {

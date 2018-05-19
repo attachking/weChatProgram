@@ -28,7 +28,7 @@ Page({
                 })
               } else {
                 wx.navigateTo({
-                  url: `../deviceDetail/deviceDetail?id=${query.deviceId}`
+                  url: `../deviceDetail/deviceDetail?id=${query.deviceId}&code=${query.deviceCode}`
                 })
               }
               setTimeout(() => {

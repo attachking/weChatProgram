@@ -31,7 +31,7 @@ Page({
   },
   handleCycleChange() {
     let _this = this
-    let itemList = ['1天', '3天', '7天']
+    let itemList = this.data.recordTypeCode === 'first' ? ['1天', '3天', '7天'] : ['1天']
     wx.showActionSheet({
       itemList: itemList,
       success(index) {
@@ -60,6 +60,12 @@ Page({
         if (index.tapIndex === 0) {
           recordTypeCode = 'first'
         } else {
+          // 选择运行记录时，只能选择一天
+          _this.setData({
+            cycle: '1天'
+          })
+          handleDay(1)
+          _this.getList()
           recordTypeCode = 'second'
         }
         _this.setData({
@@ -125,10 +131,12 @@ Page({
     }).then(res => {
       wx.hideLoading()
       const data = res.data.result.iccDevice
+      data.deviceInstallTime = typeof data.deviceInstallTime === 'string' ? data.deviceInstallTime.replace(/-/g, '/') : data.deviceInstallTime
       this.setData({
         type: data.parameterOption || '--',
         time: data.deviceInstallTime ? dateFormat.call(new Date(data.deviceInstallTime), 'yyyy-MM-dd') : '--',
         code: data.deviceCode || '--',
+        customerCode: data.deviceRegisteCode || '--',
         position: data.devicePosition || '--',
         machine: data.deviceMachineCode || '--',
         // status: Number(data.deviceOpenCounts) === 0 ? 1 : Number(data.deviceLastRunStatus) === 0 ? 2 : 3
@@ -146,8 +154,8 @@ Page({
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
     searchData.currentPage = 1
-    searchData.deviceCode = options.code
-    searchData.deviceId = options.id
+    searchData.deviceCode = options.code || ''
+    searchData.deviceId = options.id || ''
     this.getDetail(options.id)
     this.initAll()
     this.getList()

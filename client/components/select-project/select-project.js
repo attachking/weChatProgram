@@ -27,11 +27,15 @@ Component({
       event.$emit(EVENT_TYPES.currentProject, this.data.selections[e.detail.value])
       this.closeMask()
     },
-    handleCatch() {
-    },
+    handleCatch() {},
     handleProject(project) {
+      let index = this.data.selections.findIndex(item => item.projectId === project.projectId)
+      if (index === -1 && this.data.selections.length) {
+        event.$emit(EVENT_TYPES.currentProject, this.data.selections[0])
+        return
+      }
       this.setData({
-        currentVal: this.data.selections.findIndex(item => item.projectId === project.projectId)
+        currentVal: index
       })
     },
     getProjectList() {
@@ -49,8 +53,9 @@ Component({
     }
   },
   ready() {
+    let index = this.data.selections.findIndex(item => item.id === app.globalData.currentProject.id)
     this.setData({
-      currentVal: this.data.selections.findIndex(item => item.id === app.globalData.currentProject.id)
+      currentVal: index === -1 ? 0 : index
     })
   },
   created() {

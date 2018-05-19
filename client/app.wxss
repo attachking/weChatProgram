@@ -53,6 +53,10 @@ page{
     width: 100%;
 }
 .repairList .item .left .left-text{
+    z-index: 5;
+    transform: translate(-50%,0);
+    left: 50%;
+    top: 5rpx;
     position:absolute;
 }
 .repairList .item .left .left-text{
@@ -63,6 +67,7 @@ page{
 }
 .repairList .item .left .left-text view{
     box-sizing: border-box;
+    white-space: nowrap;
 }
 .repairList .item .left .left-text view:nth-child(2){
     margin: 0 10rpx;
@@ -101,4 +106,7 @@ page{
     padding: 50rpx 0;
     text-align: center;
     font-size: 28rpx;
+}
+.empty image{
+    width: 40%;
 }

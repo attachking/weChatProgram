@@ -2,6 +2,14 @@
     <view class="list">
         <view class="item">
             <view class="icon">
+                <image src="../../images/record.png" mode="widthFix"></image>
+            </view>
+            <view class="content">
+                {{detail.knowledgeHead}}
+            </view>
+        </view>
+        <view class="item">
+            <view class="icon">
                 <image src="../../images/setting.png" mode="widthFix"></image>
             </view>
             <view class="content">

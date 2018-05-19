@@ -16,11 +16,19 @@ Page({
     list: [],
     total: '',
     normal: '',
-    abnormal: ''
+    abnormal: '',
+    showSelect: false
   },
   // 事件处理函数
   bindViewTap: function () {
 
+  },
+  handleCloseMask() {
+    this.setData({
+      showSelect: false
+    })
+    searchData.projectId = app.globalData.currentProject.projectId
+    this.renderList()
   },
   getList(cb) {
     if (searchData.currentPage === 1) {
@@ -82,7 +90,7 @@ Page({
     context.setFontSize(14)
     context.setTextAlign('center')
     context.setFillStyle('#ff0000')
-    context.fillText(`${start * 100}%`, radius / pixelRatio, radius / pixelRatio - 5)
+    context.fillText(`${start.toFixed(4) * 100}%`, radius / pixelRatio, radius / pixelRatio - 5)
     context.setFillStyle('#000000')
     context.fillText(`共${total}台`, radius / pixelRatio, radius / pixelRatio + 15)
     context.draw()
@@ -108,6 +116,11 @@ Page({
   onLoad: function () {
     searchData.currentPage = 1
     searchData.projectId = app.globalData.currentProject.projectId
+    if (!searchData.projectId) {
+      this.setData({
+        showSelect: true
+      })
+    }
     this.renderList()
   },
   onShow() {

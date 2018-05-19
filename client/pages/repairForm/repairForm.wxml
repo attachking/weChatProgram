@@ -17,7 +17,7 @@
                 <text>实施地点</text>
             </view>
             <view class="input" bindtap="getGPS">
-                <input value="{{address}}" type="text" placeholder="点击选择位置" disabled></input>
+                <input value="{{address}}" bindblur="handleBlur" bindinput="handleAddress" type="text" placeholder="点击选择位置" disabled="{{isDisabled}}" focus="{{isFocus}}"></input>
             </view>
         </view>
         <view class="row">

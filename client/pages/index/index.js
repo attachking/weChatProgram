@@ -8,31 +8,45 @@ Page({
     loginStatus: 1,
     username: '',
     password: '',
-    showForm: false
+    showForm: false,
+    // 用于清空用户名密码
+    showUsername: '',
+    showPassword: ''
   },
   handleUsername(e) {
     const val = e.detail.value
+    if (val.length > 25) return this.data.username
     this.setData({
       username: val
     })
   },
   handlePassword(e) {
     const val = e.detail.value
+    if (val.length > 25) return this.data.password
     this.setData({
       password: val
     })
   },
   clear1() {
     this.setData({
-      username: ''
+      username: '',
+      showUsername: ''
     })
   },
   clear2() {
     this.setData({
-      password: ''
+      password: '',
+      showPassword: ''
     })
   },
   handleLogin() {
+    if (!this.data.username || !this.data.username) {
+      wx.showToast({
+        title: '用户名或密码不能为空',
+        icon: 'none'
+      })
+      return
+    }
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -42,18 +56,25 @@ Page({
       userPassword: this.data.password,
       openId: this.openid
     }).then(res => {
-      wx.hideLoading()
-      this.saveStorage(res.data.result)
-      wx.showToast({
-        title: '登陆成功！',
-        icon: 'success',
-        complete() {
-          wx.switchTab({
-            url: '../monitor/monitor'
-          })
-        }
-      })
-      this.getProjectList()
+      if (res.data.error.result === 1) {
+        wx.hideLoading()
+        this.saveStorage(res.data.result)
+        wx.showToast({
+          title: '登陆成功！',
+          icon: 'success',
+          complete() {
+            wx.switchTab({
+              url: '../monitor/monitor'
+            })
+          }
+        })
+        this.getProjectList()
+      } else {
+        wx.showToast({
+          title: res.data.error.message,
+          icon: 'none'
+        })
+      }
     }).catch(() => {
       wx.hideLoading()
     })
@@ -85,6 +106,7 @@ Page({
           jsCode: res.code
         }).then(res => {
           _this.openid = res.data.result.openid
+          wx.setStorageSync(STORAGE_TYPE.openid, res.data.result.openid)
           if (res.data.result.openid) {
             return post('/service/business/college/iccWechat/iccWechat/checkIsBindWechat.xf', {
               openId: res.data.result.openid
@@ -127,7 +149,7 @@ Page({
     let st = wx.getStorageSync(STORAGE_TYPE.project)
     if (st) {
       event.$emit(EVENT_TYPES.currentProject, st)
-    } else {
+    }/* else {
       post('/service/business/college/iccProject/iccProject/getProjectList.xf', {
         rowsNum: 9999,
         currentPage: 1,
@@ -137,7 +159,7 @@ Page({
           event.$emit(EVENT_TYPES.currentProject, res.data.result[0])
         }
       })
-    }
+    }*/
   },
   initIndex() {
     this.getUserInfo()

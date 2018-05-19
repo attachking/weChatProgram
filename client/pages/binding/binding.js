@@ -1,4 +1,4 @@
-import {post, STORAGE_TYPE} from '../../utils/util'
+import {post, STORAGE_TYPE, getAuthen} from '../../utils/util'
 
 const app = getApp()
 
@@ -15,26 +15,71 @@ Page({
     deviceTypeName: '请选择设备类型',
     latitude: '', // 纬度
     longitude: '', // 经度
+    isFocus: false,
+    isDisabled:true
+  },
+  handleAddress(e) {
+    const value = e.detail.value
+    this.setData({
+      address: value
+    })
+  },
+  handleBlur() {
+    this.setData({
+      isDisabled:true
+    })
   },
   getGPS() {
     let _this = this
-    wx.chooseLocation({
-      success(e) {
-        _this.setData({
-          address: e.address,
-          latitude: e.latitude,
-          longitude: e.longitude
-        })
-      },
-      fail(err) {
-        if (err.errMsg === 'chooseLocation:fail auth deny') {
-          wx.showModal({
-            title: '提示',
-            content: '此功能需用户授权',
-            showCancel: false
-          })
+    if (this.data.latitude) {
+      wx.showActionSheet({
+        itemList: ['编辑详细位置', '重新定位'],
+        success(index) {
+          if (index.tapIndex === 0) {
+            _this.setData({
+              isFocus:true,
+              isDisabled: false
+            })
+          } else if (index.tapIndex === 1) {
+            _this.choosePos()
+          }
         }
-      }
+      })
+    } else {
+      this.choosePos()
+    }
+  },
+  choosePos() {
+    let _this = this
+    getAuthen('scope.userLocation').then(() => {
+      wx.chooseLocation({
+        success(e) {
+          _this.setData({
+            address: e.address,
+            latitude: e.latitude,
+            longitude: e.longitude
+          })
+        },
+        fail(err) {
+          if (err.errMsg === 'chooseLocation:fail auth deny') {
+            wx.showModal({
+              title: '提示',
+              content: '此功能需用户授权',
+              showCancel: false
+            })
+          }
+        }
+      })
+    }).catch(() => {
+      wx.showModal({
+        title: '提示',
+        content: '请允许使用我的地理位置',
+        success({confirm}) {
+          if (confirm) {
+            wx.openSetting()
+          }
+        }
+      })
     })
   },
   handleType(e) {

@@ -4,14 +4,14 @@
     <view class="login-form" wx:if="{{showForm}}">
         <view class="row">
             <image src="../../images/user.png" mode="widthFix" class="label"></image>
-            <input type="text" bindinput="handleUsername" placeholder="请输入用户名" placeholder-style="color: #fff;font-size: 28rpx;"></input>
+            <input type="text" bindinput="handleUsername" value="{{showUsername}}" placeholder="请输入用户名" placeholder-style="color: #fff;font-size: 28rpx;"></input>
             <view class="icon">
                 <icon bindtap="clear1" type="clear" hidden="{{!username}}"></icon>
             </view>
         </view>
         <view class="row">
             <image src="../../images/password.png" mode="widthFix" class="label"></image>
-            <input type="text" password bindinput="handlePassword" placeholder="请输入密码" placeholder-style="color: #fff;font-size: 28rpx;"></input>
+            <input type="text" password value="{{showPassword}}" bindinput="handlePassword" placeholder="请输入密码" placeholder-style="color: #fff;font-size: 28rpx;"></input>
             <view class="icon">
                 <icon bindtap="clear2" type="clear" hidden="{{!password}}"></icon>
             </view>

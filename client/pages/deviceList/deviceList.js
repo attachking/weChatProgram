@@ -82,7 +82,7 @@ Page({
     searchData.deviceType = options.id || ''
     searchData.projectId = app.globalData.currentProject.projectId
     wx.setNavigationBarTitle({
-      title: options.title || ''
+      title: options.title || app.globalData.currentProject.projectName
     })
     this.getList()
   },

@@ -14,6 +14,7 @@ Page({
     selections: [],
     selectedName: '全部',
     keywords: '',
+    showKeywords: '', // 用来重置页面上的输入框
     loading: true
   },
 	handleChange(e) {
@@ -33,8 +34,8 @@ Page({
     })
   },
 	handleConfirm() {
-    searchData.knowledgeDesc = this.data.keywords
     searchData.currentPage = 1
+    searchData.knowledgeDesc = encodeURIComponent(this.data.keywords)
     this.getList()
   },
   getList(cb) {
@@ -77,9 +78,7 @@ Page({
     this.initPage()
   },
   // 生命周期函数--监听页面初次渲染完成
-  onReady: function () {
-
-  },
+  onReady: function () {},
   initPage(cb) {
     searchData = {
       rowsNum: 20,
@@ -89,7 +88,8 @@ Page({
     }
     this.setData({
       selectedName: '全部',
-      keywords: ''
+      keywords: '',
+      showKeywords: ''
     })
     this.getList(cb)
   },
@@ -104,13 +104,9 @@ Page({
     })
   },
   // 生命周期函数--监听页面隐藏
-  onHide: function () {
-  
-  },
+  onHide: function () {},
   // 生命周期函数--监听页面卸载
-  onUnload: function () {
-
-  },
+  onUnload: function () {},
   // 页面相关事件处理函数--监听用户下拉动作
   onPullDownRefresh: function () {
     this.initPage(() => {
@@ -130,7 +126,5 @@ Page({
     }
   },
   // 用户点击右上角分享
-  onShareAppMessage: function () {
-  
-  }
+  onShareAppMessage: function () {}
 })

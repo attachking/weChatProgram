@@ -13,7 +13,7 @@
             <view class="first">{{type}}</view>
             <view class="info-item">授权时间：{{time}}</view>
             <view class="info-item">摆放位置：{{position}}</view>
-            <view class="info-item">设备编号：{{code}}</view>
+            <view class="info-item">客户设备编号：{{customerCode}}</view>
             <view class="info-item">机器码：{{machine}}</view>
         </view>
     </view>

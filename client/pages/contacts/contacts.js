@@ -3,7 +3,7 @@ import {post} from '../../utils/util'
 
 // 以下参数最好为2的倍数
 const TIT_HEIGHT = 60 // 每组标题的高度rpx
-const ITEM_HEIGHT = 100  // 联系人view的高度rpx
+const ITEM_HEIGHT = 130  // 联系人view的高度rpx
 const SHORTCUT_HEIGHT = 36 // 右侧快捷导航每项的高度rpx
 const SHORTCUT_PADDING = 10 // 右侧快捷导航的padding  rpx
 const app = getApp()
@@ -30,7 +30,13 @@ Page({
     let list = this.data.list
     let remark = true
     list.forEach((item, index) => {
-      if (scrollTop >= item.height && scrollTop < list[index + 1].height) {
+      if (list.length > 1) {
+        if (scrollTop >= item.height && scrollTop < list[index + 1].height) {
+          this.setData({
+            currentTitle: item.title
+          })
+        }
+      } else {
         this.setData({
           currentTitle: item.title
         })
@@ -157,33 +163,35 @@ Page({
           tel: item.addressBooksContactsPhone
         }
       })
+      if (!this.defaultList.length) {
+        wx.showModal({
+          title: '提示',
+          content: '暂无联系人',
+          showCancel: false,
+          complete() {
+            wx.navigateBack()
+          }
+        })
+      }
       this.handleList(this.defaultList)
     })
   },
   // 生命周期函数--监听页面加载
-  onLoad: function (options) {
-
-  },
+  onLoad: function (options) {},
   // 生命周期函数--监听页面初次渲染完成
-  onReady: function () {
-  },
+  onReady: function () {},
   // 生命周期函数--监听页面显示
   onShow: function () {
     this.getList()
   },
   // 生命周期函数--监听页面隐藏
-  onHide: function () {
-  },
+  onHide: function () {},
   // 生命周期函数--监听页面卸载
-  onUnload: function () {
-  },
+  onUnload: function () {},
   // 页面相关事件处理函数--监听用户下拉动作
-  onPullDownRefresh: function () {
-  },
+  onPullDownRefresh: function () {},
   // 页面上拉触底事件的处理函数
-  onReachBottom: function () {
-  },
+  onReachBottom: function () {},
   // 用户点击右上角分享
-  onShareAppMessage: function () {
-  }
+  onShareAppMessage: function () {}
 })
