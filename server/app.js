@@ -2,6 +2,7 @@ const http = require('http')
 const config = require('./config')
 // 创建http服务
 const app = http.createServer(function (req, res) {
+  req.headers.Referer = 'http://job.zzu.edu.cn'
   let sreq = http.request({
     host: config.remoteAddress, // 目标主机
     port: config.remotePort, // 目标主机端口号
