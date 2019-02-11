@@ -45,7 +45,7 @@
         <include src="../empty/empty.wxml" wx:if="{{!loading && !list.length}}" />
     </view>
     <view class="add">
-        <button type="primary" bindtap="handleAdd">添加维修记录</button>
+        <button type="primary" bindtap="handleAdd" disabled="{{!editable}}">添加维修记录</button>
         <button type="primary" bindtap="handleRecord">历史维修记录</button>
     </view>
 </view>

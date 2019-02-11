@@ -63,6 +63,11 @@ Page({
 
   },
   onTabItemTap() {
+    /*wx.showModal({
+      title: '提示',
+      content: '点击',
+      showCancel: false
+    })*/
     this.scanCode()
   },
   // 生命周期函数--监听页面初次渲染完成

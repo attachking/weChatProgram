@@ -1,4 +1,4 @@
-import {post, dateFormat} from '../../utils/util'
+import {post, dateFormat, STORAGE_TYPE} from '../../utils/util'
 
 let searchData = {
   rowsNum: 20,
@@ -27,7 +27,8 @@ Page({
     code: '',
     position: '',
     machine: '',
-    status: ''
+    status: '',
+    editable: 0
   },
   handleCycleChange() {
     let _this = this
@@ -115,6 +116,7 @@ Page({
     })
   },
   handleAdd() {
+    if (this.data.editable === 0) return
     wx.navigateTo({
       url: `../repairForm/repairForm?deviceid=${searchData.deviceId}`
     })
@@ -125,6 +127,7 @@ Page({
       mask: true
     })
     post('/service/business/college/iccDevice/iccDevice/editDeviceInfo.xf', {
+      userId: wx.getStorageSync(STORAGE_TYPE.uid),
       deviceId: id,
       rowsNum: 1,
       currentPage: 1
@@ -140,7 +143,8 @@ Page({
         position: data.devicePosition || '--',
         machine: data.deviceMachineCode || '--',
         // status: Number(data.deviceOpenCounts) === 0 ? 1 : Number(data.deviceLastRunStatus) === 0 ? 2 : 3
-        status: Number(data.deviceLastRunStatus) === 0 ? 2 : 3
+        status: Number(data.deviceLastRunStatus) === 0 ? 2 : 3,
+        editable: Number(res.data.result.forwardFlag)
       })
     }).catch(() => {
       wx.hideLoading()

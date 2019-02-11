@@ -1,5 +1,5 @@
 import event, {EVENT_TYPES} from '../../utils/event'
-import {post, STORAGE_TYPE} from '../../utils/util'
+import {post, STORAGE_TYPE, queryParse} from '../../utils/util'
 
 const app = getApp()
 
@@ -44,6 +44,40 @@ Page({
           }).catch(() => {
             wx.hideLoading()
           })
+        }
+      }
+    })
+  },
+  bindScan() {
+    wx.scanCode({
+      success(res) {
+        console.log(res)
+        if (res.errMsg === 'scanCode:ok') {
+          if (res.result.indexOf('.xf') !== -1) {
+            let query = queryParse(res.result)
+            wx.showLoading({
+              title: '加载中',
+              mask: true
+            })
+            post('/service/business/college/iccDevice/iccDevice/editDeviceInfo.xf', {
+              deviceId: query.deviceId,
+              rowsNum: 1,
+              currentPage: 1
+            }).then(res => {
+              wx.hideLoading()
+              if (!res.data.result.iccDevice.deviceLicenseKey) {
+                wx.navigateTo({
+                  url: `../binding/binding?deviceCode=${query.deviceCode}&deviceId=${query.deviceId}&deviceType=${query.deviceType || ''}`
+                })
+              } else {
+                wx.navigateTo({
+                  url: `../deviceDetail/deviceDetail?id=${query.deviceId}&code=${query.deviceCode}`
+                })
+              }
+            }).catch(() => {
+              wx.hideLoading()
+            })
+          }
         }
       }
     })
